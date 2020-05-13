@@ -26,6 +26,10 @@
               <span class="glyphicon glyphicon-transfer"></span> Make Transaction
             </button>
             <div th:replace="fragments/add-transaction-modal :: add-transaction-modal"></div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#depoTransaction">
+              <span class="glyphicon glyphicon-transfer"></span> Deposit Transaction
+            </button>
+            <div th:replace="fragments/depo-transaction-modal :: depo-transaction-modal"></div>
           </div>
         </div>
       </div>

@@ -3,6 +3,9 @@ package com.pmz.simplebankingapp.domain.entity;
 import com.pmz.simplebankingapp.domain.enums.Currency;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.ColumnDefault;
+
 import java.util.List;
 
 @Entity
@@ -25,7 +28,7 @@ public class Card {
     )
     private List<Transaction> transactions;
 
-    @Column(name = "card_balance", nullable = false)
+    @Column(name = "card_balance", nullable = false,columnDefinition = "double default 500.00")
     private double cardBalance;
 
     @Enumerated(EnumType.STRING)

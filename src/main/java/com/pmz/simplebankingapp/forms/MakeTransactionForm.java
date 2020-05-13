@@ -1,11 +1,11 @@
 package com.pmz.simplebankingapp.forms;
 
-import org.hibernate.validator.constraints.Length;
-import org.springframework.stereotype.Component;
-
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.stereotype.Component;
 
 @Component
 public class MakeTransactionForm {

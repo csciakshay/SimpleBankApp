@@ -24,6 +24,14 @@ public class User {
     private String password;
     @Column(nullable = false)
     private String email;
+    @Column(nullable = false, length = 15)
+    private String firstname;
+    @Column(nullable = false, length = 15)
+    private String lastname;
+    @Column(nullable = false, length = 15)
+    private String fathername;
+    @Column(nullable = false, length = 15)
+    private String mothername;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -44,6 +52,10 @@ public class User {
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.email = user.getEmail();
+        this.firstname = user.getFirstname();
+        this.lastname = user.getLastname();
+        this.fathername = user.getFathername();
+        this.mothername = user.getMothername();
         this.roles = user.getRoles();
         this.cards = user.getCards();
     }
@@ -96,4 +108,37 @@ public class User {
         this.cards = cards;
     }
 
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getFathername() {
+		return fathername;
+	}
+
+	public void setFathername(String fathername) {
+		this.fathername = fathername;
+	}
+
+	public String getMothername() {
+		return mothername;
+	}
+
+	public void setMothername(String mothername) {
+		this.mothername = mothername;
+	}
+
+    
 }

@@ -66,6 +66,10 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userCreateForm.getUsername());
         user.setEmail(userCreateForm.getEmail());
         user.setPassword(passwordEncoder.encode(userCreateForm.getPassword()));
+        user.setFirstname(userCreateForm.getFirstname());
+        user.setLastname(userCreateForm.getLastname());
+        user.setFathername(userCreateForm.getFathername());
+        user.setMothername(userCreateForm.getMothername());
 
         Set<Role> roles = generateRolesSet();
         user.setRoles(roles);

@@ -67,7 +67,7 @@ public class TransactionController {
     public String processAddTransaction(@ModelAttribute("addTransactionForm") MakeTransactionForm makeTransactionForm,
                                         Model model) {
         long cardId = makeTransactionForm.getCardId();
-        String iban = makeTransactionForm.getIban();
+        String iban = "With-"+makeTransactionForm.getIban();
         double sum = makeTransactionForm.getSum();
 
         String purpose = makeTransactionForm.getPurpose();
@@ -77,6 +77,32 @@ public class TransactionController {
         if (card != null &&  card.getCardBalance() >= sum) {
             Transaction transaction = new Transaction(card, iban, sum, purpose);
             card.setCardBalance(card.getCardBalance() - sum);
+
+            cardRepository.save(card);
+            transactionRepository.save(transaction);
+
+            model.addAttribute("successfulTransaction", "successfulTransaction");
+        } else {
+            model.addAttribute("insufficientFundsError", "insufficientFundsError");
+        }
+
+        return "transactions";
+    }
+
+    @PostMapping("/depo-transaction")
+    public String processDepoTransaction(@ModelAttribute("addTransactionForm") MakeTransactionForm makeTransactionForm,
+                                        Model model) {
+        long cardId = makeTransactionForm.getCardId();
+        String iban = "Depo-"+makeTransactionForm.getIban();
+        double sum = makeTransactionForm.getSum();
+
+        String purpose = makeTransactionForm.getPurpose();
+
+        Card card = cardService.findCardById(cardId);
+
+        if (card != null &&  sum<=10000.00) {
+            Transaction transaction = new Transaction(card, iban, sum, purpose);
+            card.setCardBalance(card.getCardBalance() + sum);
 
             cardRepository.save(card);
             transactionRepository.save(transaction);
